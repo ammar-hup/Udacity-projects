@@ -1,13 +1,3 @@
-/*
- *
- * CSS written based on SMACSS architecture.
- * To learn more, visit: http://smacss.com/
- * 
- * For simplicity, no reset or normalize is added. 
- * To learn more, visit: https://css-tricks.com/reboot-resets-reasoning/
- *
-*/
-
 /* ---- Base Rules ---- */
 body {
   background: rgb(136, 203, 171);
@@ -136,8 +126,6 @@ section:nth-of-type(even) .landing__container {
 }
 
 /* Background Circles */
-/* Note that background circles are created with psuedo elements before and after */
-/* Circles appear to be random do to use of :nth-of-type psuedo class */
 section:nth-of-type(odd) .landing__container::before {
   content: "";
   background: rgba(255, 255, 255, 0.187);
@@ -208,8 +196,6 @@ section:nth-of-type(3n + 1) .landing__container::after {
 }
 
 /* ---- Theme State Rules ---- */
-/* Section Active Styles */
-/* Note: your-active-class class is applied through javascript. You should update the class here and in the index.html to what you set in your javascript file.  */
 section.your-active-class {
   background: rgb(0, 0, 0);
   background: linear-gradient(
