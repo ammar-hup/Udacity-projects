@@ -4,7 +4,9 @@
 
 Landing Page Project built in html,css,javaScript
 
-## Auther: Ammar Mahmoud
+## Auther
+
+Ammar Mahmoud
 
 ### Techs:
 
