@@ -1,30 +1,44 @@
-const ul = document.querySelector("#navbar__list");
+const ulNav = document.getElementById("navbar__list");
 const sections = document.querySelectorAll("section");
-const fragment_file = document.createDocumentFragment();
+const main = document.querySelector("main");
 
-let i = 1;
 for (const section of sections) {
-  const sectionId = section.id;
-  const li = document.createElement("li");
-  const link = document.createElement("a");
-  link.href = "#${sectionId}";
-  link.classList = "menu__link";
-  link.textContent = "section " + i;
-  link.addEventListener("click", function (evannt) {
-    evannt.preventDefault();
-    section.scrollIntoView({
-      behavior: "smooth",
-    });
-  });
-  li.appendChild(link);
-  li.style.cssText =
-    "color: black; opacity : 0.9; font-family: Arial, Helvetica, sans-serif;align-content:center ; text-transform: capitalize; font-style: italic ;";
-  document.getElementById("navbar__list").style.cssText =
-    "text-align : center;";
-  fragment_file.appendChild(li);
-  i++;
+  const sId = section.id;
+  const linkList = `<li><a href="#${sId}" data-nav="${sId}" class="menu__link"> ${sId} </a></li>`;
+  ulNav.insertAdjacentHTML("beforeend", linkList);
+  ulNav.style.cssText = `text-align : center; opacity : 0.9; font-family: Arial, Helvetica, sans-serif;`;
 }
-ul.appendChild(fragment_file);
+
+let mybtn = `<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>`;
+
+main.insertAdjacentHTML("beforeend", mybtn);
+let mybutton = document.getElementById("myBtn");
+mybutton.style.cssText = `display: none;
+position: fixed ;
+bottom: 10px;
+right: 20px;
+background-color: rgb(67 97 116 / 41%);
+color: white;
+cursor: pointer;
+padding: 13px;
+border-radius: 9px;
+font-size: 17px;`;
+
+window.onscroll = function () {
+  scrollFunction();
+};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+function topFunction() {
+  document.body.scrollTop = 0;
+}
 
 function callback(e) {
   const actvLink = document.querySelector(`a[href="#${e[0].target.id}"]`);
@@ -37,9 +51,7 @@ function callback(e) {
   }
 }
 const choice = {
-  root: null,
-  rootMargin: "0px",
-  threshold: 0.5,
+  threshold: 0.4,
 };
 const tracker = new IntersectionObserver(callback, choice);
 
